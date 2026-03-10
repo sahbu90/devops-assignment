@@ -1,0 +1,21 @@
+# Create users
+sudo useradd -m Sarah
+sudo useradd -m mike
+
+# Set passwords
+sudo passwd Sarah
+sudo passwd mike
+
+# Create workspace directories
+mkdir /home/Sarah/workspace
+mkdir /home/mike/workspace
+
+# Set permissions
+chmod 700 /home/Sarah/workspace
+chmod 700 /home/mike/workspace
+
+# Password expiry policy
+sudo chage -M 30 Sarah
+sudo chage -M 30 mike# Create users
+sudo useradd -m Sarah
+sudo useradd -m mike

@@ -1,0 +1,5 @@
+# Sarah Apache Backup
+0 0 * * 2 /home/Sarah/apache_backup.sh
+
+# Mike Nginx Backup
+0 0 * * 2 /home/mike/nginx_backup.sh
