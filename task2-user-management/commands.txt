@@ -17,5 +17,4 @@ chmod 700 /home/mike/workspace
 # Password expiry policy
 sudo chage -M 30 Sarah
 sudo chage -M 30 mike# Create users
-sudo useradd -m Sarah
-sudo useradd -m mike
+
