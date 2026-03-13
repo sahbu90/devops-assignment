@@ -1,14 +1,16 @@
 #!/bin/bash
 
+set -o pipefail
+
 DATE=$(date +%F)
+
 BACKUP_FILE="/backups/apache_backup_$DATE.tar.gz"
-LOG_FILE="/backups/apache_backup_log.txt"
 
-tar -czvf $BACKUP_FILE /etc/apache2 /var/www/html
+LOGFILE="/backups/apache_backup.log"
 
-echo "Backup created: $BACKUP_FILE" >> $LOG_FILE
+tar -czvf $BACKUP_FILE /etc/httpd /var/www/html >> $LOGFILE 2>&1
 
-echo "Verifying backup contents:" >> $LOG_FILE
-tar -tzf $BACKUP_FILE >> $LOG_FILE
+echo "Backup created on $DATE : $BACKUP_FILE" >> $LOGFILE
 
-echo "---------------------------------" >> $LOG_FILE
+echo "Verifying backup..." >> $LOGFILE
+tar -tzf $BACKUP_FILE >> $LOGFILE
