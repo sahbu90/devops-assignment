@@ -1,14 +1,17 @@
 #!/bin/bash
 
+set -o pipefail
+
 DATE=$(date +%F)
-BACKUP_FILE="/backups/nginx/nginx_backup_$DATE.tar.gz"
-LOG_FILE="/backups/nginx/nginx_backup_log.txt"
 
-tar -czvf $BACKUP_FILE /etc/nginx /usr/share/nginx/html
+BACKUP_FILE="/backups/nginx_backup_$DATE.tar.gz"
 
-echo "Backup created: $BACKUP_FILE" >> $LOG_FILE
+LOGFILE="/backups/nginx_backup.log"
 
-echo "Verifying backup contents:" >> $LOG_FILE
-tar -tzf $BACKUP_FILE >> $LOG_FILE
+tar -czvf $BACKUP_FILE /etc/nginx /usr/share/nginx/html >> $LOGFILE 2>&1
 
-echo "---------------------------------" >> $LOG_FILE
+echo "Backup created on $DATE : $BACKUP_FILE" >> $LOGFILE
+
+echo "Verifying backup..." >> $LOGFILE
+
+tar -tzf $BACKUP_FILE >> $LOGFILE
